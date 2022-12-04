@@ -8,16 +8,16 @@ const reHydrateStore = () => {
     }
 };
 
-const authMiddleware = (store: any) => (next: any) => (action: any) => {
+const appMiddleware = (store: any) => (next: any) => (action: any) => {
     const result = next(action);
-    const authState = store.getState();
-    localStorage.setItem('app_state', JSON.stringify(authState));
+    const appState = store.getState();
+    localStorage.setItem('app_state', JSON.stringify(appState));
     return result;
 };
 
 export const store = configureStore({
     reducer: walletDataSlice.reducer,
-    middleware: [thunk, authMiddleware],
+    middleware: [thunk, appMiddleware],
     preloadedState: reHydrateStore(),
 });
 

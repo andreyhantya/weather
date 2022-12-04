@@ -9,7 +9,7 @@
         "strict": true,
         "forceConsistentCasingInFileNames": true,
         "noFallthroughCasesInSwitch": true,
-        "types": ["@types/styled-components"],
+        "types": ["@types/styled-components", "jest"],
         "module": "esnext",
         "moduleResolution": "node",
         "resolveJsonModule": true,
@@ -17,5 +17,6 @@
         "noEmit": true,
         "jsx": "react-jsx"
     },
-    "include": ["src"]
+    "include": ["src"],
+    "exclude": ["node_modules", "**/*.spec.ts", "**/*.test.ts"]
 }

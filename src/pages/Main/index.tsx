@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import { fetchCustomers } from '../../asyncActions/weather';
-import CityCardList from '../../components/main/CityCardList';
+import { fetchCityWeather } from '../../store/asyncActions/weather';
+import CityCardList from '../../components/CityCardList';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 
-const Main = () => {
+const Main = (): JSX.Element => {
     const [inputValue, setInputValue] = useState('');
-
     return (
         <div>
             <Stack spacing={2} direction="row">
@@ -17,7 +16,7 @@ const Main = () => {
                     variant="outlined"
                     onChange={(e) => setInputValue(e.target.value)}
                 />
-                <Button variant="contained" onClick={fetchCustomers(inputValue)}>
+                <Button variant="contained" onClick={fetchCityWeather(inputValue)}>
                     Send
                 </Button>
             </Stack>

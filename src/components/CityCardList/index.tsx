@@ -1,9 +1,9 @@
 import React from 'react';
-import { useAppSelector } from '../../../store/hooks';
-import { citiesDataSelector } from '../../../store/slices/WeatherDataSlice';
-import CityCard from './CityCard';
+import { useAppSelector } from '../../store/hooks';
+import { citiesDataSelector } from '../../store/slices/WeatherDataSlice';
+import CityCard from '../CityCard';
 import { StyledCardList } from './styles';
-import { ICityWeatherData } from '../../../constants/globalTypes';
+import { ICityWeatherData } from '../../utils/constants/globalTypes';
 
 const CityCardList = (): JSX.Element => {
     const cities = useAppSelector(citiesDataSelector.getCitiesList);

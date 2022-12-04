@@ -1,11 +1,13 @@
 import React from 'react';
-import { deleteCity } from '../../../../store/slices/WeatherDataSlice';
+import { deleteCity } from '../../store/slices/WeatherDataSlice';
 import { Link } from 'react-router-dom';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import RefreshIcon from '@mui/icons-material/Refresh';
-import { useAppDispatch } from '../../../../store/hooks';
-import { refreshCityInfo } from '../../../../asyncActions/weather';
+import { useAppDispatch } from '../../store/hooks';
+import { refreshCityInfo } from '../../store/asyncActions/weather';
+import { getIconUrl } from '../../utils/commonFunctions';
+import { ICityCardProps } from './types';
 import {
     CardWrapper,
     CardTitle,
@@ -16,15 +18,11 @@ import {
     CardButtonsWrapper,
 } from './styles';
 
-const getIconUrl = (iconName: string) => {
-    return `http://openweathermap.org/img/wn/${iconName}.png`;
-};
-
-const CityCard = ({ data }: any) => {
+const CityCard = ({ data }: ICityCardProps) => {
     const dispatch = useAppDispatch();
     const { name, main, weather, id } = data;
 
-    const q = () => {
+    const handlerDeleteCity = () => {
         dispatch(deleteCity(id));
     };
 
@@ -37,19 +35,28 @@ const CityCard = ({ data }: any) => {
             <CardContent>
                 <div>
                     <CardSubtitle>{weather[0].main} </CardSubtitle>
-                    <CardSubtitle>{Math.floor(main.temp)}&#176;С</CardSubtitle>
-                    <CardSubtitle>Feels like: {Math.floor(main.feels_like)}&#176;С</CardSubtitle>
+                    <CardSubtitle>
+                        {Math.floor(main.temp)}
+                        &#176;C
+                    </CardSubtitle>
+                    <CardSubtitle>
+                        Feels like: {Math.floor(main?.feels_like)}
+                        &#176;C
+                    </CardSubtitle>
                 </div>
                 <CardButtonsWrapper>
-                    <IconButton aria-label="refresh" color="primary" onClick={refreshCityInfo(id)}>
+                    <IconButton
+                        aria-label="refresh"
+                        color="primary"
+                        onClick={refreshCityInfo(Number(id))}>
                         <RefreshIcon />
                     </IconButton>
-                    <IconButton aria-label="delete" size="large" onClick={q}>
+                    <IconButton aria-label="delete" size="large" onClick={handlerDeleteCity}>
                         <DeleteIcon />
                     </IconButton>
                 </CardButtonsWrapper>
             </CardContent>
-            <Link to={`/${id}`}>
+            <Link to={`/city/${id}`}>
                 <p>Больше инфы...</p>
             </Link>
         </CardWrapper>
