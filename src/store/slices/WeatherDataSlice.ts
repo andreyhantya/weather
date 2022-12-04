@@ -12,6 +12,10 @@ const weatherDataSlice = createSlice({
     initialState,
     reducers: {
         setCitiesData: (state, action: PayloadAction<ICityWeatherData>) => {
+            const currentCities = current(state).citiesData;
+            const isDublicate = currentCities.some((city) => city.id === action.payload.id);
+            if (isDublicate) return alert('Such a city has already been chosen');
+
             state.citiesData.push(action.payload);
         },
 

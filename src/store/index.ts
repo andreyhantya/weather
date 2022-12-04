@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import walletDataSlice from './slices/WeatherDataSlice';
+import weatherDataSlice from './slices/WeatherDataSlice';
 import thunk from 'redux-thunk';
 
 const reHydrateStore = () => {
@@ -16,7 +16,7 @@ const appMiddleware = (store: any) => (next: any) => (action: any) => {
 };
 
 export const store = configureStore({
-    reducer: walletDataSlice.reducer,
+    reducer: weatherDataSlice.reducer,
     middleware: [thunk, appMiddleware],
     preloadedState: reHydrateStore(),
 });

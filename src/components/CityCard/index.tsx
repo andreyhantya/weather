@@ -1,6 +1,5 @@
 import React from 'react';
 import { deleteCity } from '../../store/slices/WeatherDataSlice';
-import { Link } from 'react-router-dom';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import RefreshIcon from '@mui/icons-material/Refresh';
@@ -16,6 +15,7 @@ import {
     CardSubtitle,
     CardContent,
     CardButtonsWrapper,
+    MoreInfo,
 } from './styles';
 
 const CityCard = ({ data }: ICityCardProps) => {
@@ -29,8 +29,8 @@ const CityCard = ({ data }: ICityCardProps) => {
     return (
         <CardWrapper>
             <CardHeader>
-                <CardTitle>{name}</CardTitle>
-                <CardIcon src={getIconUrl(weather[0].icon)} alt="" />
+                <CardTitle title={name}>{name}</CardTitle>
+                <CardIcon src={getIconUrl(weather[0].icon)} alt={weather[0].main} />
             </CardHeader>
             <CardContent>
                 <div>
@@ -56,9 +56,7 @@ const CityCard = ({ data }: ICityCardProps) => {
                     </IconButton>
                 </CardButtonsWrapper>
             </CardContent>
-            <Link to={`/city/${id}`}>
-                <p>Больше инфы...</p>
-            </Link>
+            <MoreInfo to={`/city/${id}`}>More info...</MoreInfo>
         </CardWrapper>
     );
 };

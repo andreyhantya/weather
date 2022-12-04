@@ -1,8 +1,8 @@
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { DetailsWrapper } from './styles';
+import { useParams } from 'react-router-dom';
 import { useAppSelector } from '../../store/hooks';
 import { citiesDataSelector } from '../../store/slices/WeatherDataSlice';
+import { DetailsWrapper, HomeLink, Title, InformationWrapper } from './styles';
 
 const CityWeatherDetails = (): JSX.Element => {
     const { id } = useParams();
@@ -18,24 +18,23 @@ const CityWeatherDetails = (): JSX.Element => {
     } = cityData;
 
     return (
-        <DetailsWrapper>
-            <Link to={`/`}>
-                <p>На главную</p>
-            </Link>
-            {cityData ? (
-                <div>
-                    <p>{name}</p>
-                    <p>Temperature: {temp}</p>
-
-                    <p>Feels like:{feels_like}</p>
-                    <p>Temperature max: {temp_max}</p>
-                    <p>Temperature min: {temp_min}</p>
-                    <p>{deg}</p>
-                    <p>{gust}</p>
-                    <p>{speed}</p>
-                </div>
-            ) : null}
-        </DetailsWrapper>
+        <>
+            <DetailsWrapper>
+                {cityData ? (
+                    <InformationWrapper>
+                        <Title>{name}</Title>
+                        <p>Temperature: {temp}</p>
+                        <p>Feels like: {feels_like}</p>
+                        <p>Temperature max: {temp_max}</p>
+                        <p>Temperature min: {temp_min}</p>
+                        <p>Deg: {deg}</p>
+                        <p>Gust: {gust}</p>
+                        <p>Speed: {speed}</p>
+                    </InformationWrapper>
+                ) : null}
+                <HomeLink to={`/`}>Home</HomeLink>
+            </DetailsWrapper>
+        </>
     );
 };
 
