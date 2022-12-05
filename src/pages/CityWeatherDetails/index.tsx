@@ -13,7 +13,6 @@ const CityWeatherDetails = (): JSX.Element => {
     const {
         name,
         main: { feels_like, temp, temp_max, temp_min },
-        sys,
         wind: { deg, gust, speed },
     } = cityData;
 
@@ -32,7 +31,7 @@ const CityWeatherDetails = (): JSX.Element => {
                         <p>Speed: {speed}</p>
                     </InformationWrapper>
                 ) : null}
-                <HomeLink to={`/`}>Home</HomeLink>
+                <HomeLink to={`/weather`}>Home</HomeLink>
             </DetailsWrapper>
         </>
     );

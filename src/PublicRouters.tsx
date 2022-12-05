@@ -8,7 +8,7 @@ const PublicRouters = (): JSX.Element => {
     return (
         <Routes>
             <Route path="/" element={<Main />} />
-            <Route path="/main" element={<Main />} />
+            <Route path="/weather" element={<Main />} />
             <Route path="/city/:id" element={<CityWeatherDetails />} />
             <Route path="/*" element={<NotFoundPage />} />
         </Routes>
