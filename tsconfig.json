@@ -9,7 +9,7 @@
         "strict": true,
         "forceConsistentCasingInFileNames": true,
         "noFallthroughCasesInSwitch": true,
-        "types": ["@types/styled-components", "jest"],
+        "types": ["@types/styled-components", "jest", "node"],
         "module": "esnext",
         "moduleResolution": "node",
         "resolveJsonModule": true,

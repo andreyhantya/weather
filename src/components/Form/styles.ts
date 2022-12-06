@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import Autocomplete from 'react-google-autocomplete';
 
 export const StyledForm = styled.form`
     max-width: 300px;
@@ -20,4 +21,16 @@ export const ErrorMessage = styled.div`
     top: -20px;
     font-family: 'arial', sans-serif;
     font-size: 14px;
+`;
+
+export const TextField = styled(Autocomplete)`
+    height: 40px;
+    padding-left: 10px;
+    border-radius: 5px;
+    border: 2px solid #5e5e81;
+    outline: none;
+    font-size: 15px;
+    &:focus {
+        border-color: #3131ba;
+    }
 `;

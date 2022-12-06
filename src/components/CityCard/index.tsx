@@ -5,7 +5,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import { useAppDispatch } from '../../store/hooks';
 import { refreshCityInfo } from '../../store/asyncActions/weather';
-import { getIconUrl } from '../../utils/commonFunctions';
+import { getIconUrl } from '../../utils/commonFunctions/commonFunctions';
 import { ICityCardProps } from './types';
 import {
     CardWrapper,

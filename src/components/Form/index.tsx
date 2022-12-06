@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import { fetchCityWeather } from '../../store/asyncActions/weather';
 import { ONLY_LETTERS_REG_EXP } from '../../utils/constants/regex';
-
-import { StyledForm, ErrorMessage } from './styles';
+import { StyledForm, ErrorMessage, TextField } from './styles';
+import { GOOGLE_MAPS_API_ID } from '../../store/api/weatherApi';
+import { SliceCityName } from '../../utils/commonFunctions/commonFunctions';
 
 const Form = (): JSX.Element => {
     const [cityName, setCityName] = useState('');
@@ -30,12 +30,15 @@ const Form = (): JSX.Element => {
         <StyledForm>
             <Stack spacing={2} direction="column">
                 <TextField
-                    id="outlined-basic"
-                    label="City Name"
-                    variant="outlined"
-                    value={cityName}
+                    placeholder="Enter city name"
+                    apiKey={GOOGLE_MAPS_API_ID}
+                    onPlaceSelected={({ formatted_address }) => {
+                        const slicedCityName = SliceCityName(formatted_address || '');
+                        setCityName(slicedCityName);
+                    }}
+                    onChange={(e) => cityNameHandler((e.target as HTMLInputElement).value)}
+                    defaultValue={cityName}
                     onBlur={() => setCityNameDirty(true)}
-                    onChange={(e) => cityNameHandler(e.target.value)}
                 />
                 <Button
                     variant="contained"
