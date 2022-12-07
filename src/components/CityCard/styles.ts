@@ -24,7 +24,7 @@ export const CardHeader = styled.div`
 export const CardTitle = styled.p`
     font-size: 25px;
     max-width: 100px;
-    white-space: nowrap; /* Запрещаем перенос строк */
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 `;

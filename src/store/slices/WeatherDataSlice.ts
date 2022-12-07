@@ -5,6 +5,7 @@ import { IInitialState } from './types';
 
 const initialState: IInitialState = {
     citiesData: [],
+    isLoading: false,
 };
 
 const weatherDataSlice = createSlice({
@@ -14,7 +15,7 @@ const weatherDataSlice = createSlice({
         setCitiesData: (state, action: PayloadAction<ICityWeatherData>) => {
             const currentCities = current(state).citiesData;
             const isDublicate = currentCities.some((city) => city.id === action.payload.id);
-            if (isDublicate) return alert('Such a city has already been chosen');
+            if (isDublicate) return alert('Этот город уже добавлен в список');
 
             state.citiesData.push(action.payload);
         },
@@ -40,15 +41,23 @@ const weatherDataSlice = createSlice({
 
             state.citiesData = newCitiesData;
         },
+
+        setLoadingState: (state, action: PayloadAction<boolean>) => {
+            state.isLoading = action.payload;
+        },
     },
 });
 
-export const { setCitiesData, refreshCityData, deleteCity } = weatherDataSlice.actions;
+export const { setCitiesData, refreshCityData, deleteCity, setLoadingState } =
+    weatherDataSlice.actions;
 export const citiesData = (state: IInitialState) => state.citiesData;
 export const citiesDataSelector = {
     getCitiesList: (state: IInitialState) => state.citiesData,
     getCityById: (state: IInitialState, id: number) => {
         return state.citiesData.find((elem: ICityWeatherData) => elem.id === id);
+    },
+    getLoaderState: (state: IInitialState) => {
+        return state.isLoading;
     },
 };
 export const getCitiesList = (state: IInitialState) => state.citiesData;

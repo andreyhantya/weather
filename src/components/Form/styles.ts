@@ -15,10 +15,10 @@ export const MainWrapper = styled.div`
 
 export const ErrorMessage = styled.div`
     width: 100%;
+    top: -20px;
     text-align: center;
     color: red;
     position: absolute;
-    top: -20px;
     font-family: 'arial', sans-serif;
     font-size: 14px;
 `;

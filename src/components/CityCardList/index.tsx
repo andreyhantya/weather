@@ -1,19 +1,18 @@
 import React from 'react';
 import { useAppSelector } from '../../store/hooks';
-import { citiesDataSelector } from '../../store/slices/WeatherDataSlice';
 import CityCard from '../CityCard';
-import { StyledCardList } from './styles';
 import { ICityWeatherData } from '../../utils/constants/globalTypes';
+import { StyledCardList, NoCardMessage } from './styles';
 
 const CityCardList = (): JSX.Element => {
-    const cities = useAppSelector(citiesDataSelector.getCitiesList);
+    const cities = useAppSelector((state) => state.citiesData);
 
     return (
         <StyledCardList>
-            {cities ? (
+            {cities.length ? (
                 cities.map((elem: ICityWeatherData) => <CityCard data={elem} key={elem.id} />)
             ) : (
-                <div>Ничего нет</div>
+                <NoCardMessage>Нет добавленых карточек</NoCardMessage>
             )}
         </StyledCardList>
     );

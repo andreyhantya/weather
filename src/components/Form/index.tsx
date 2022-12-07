@@ -30,7 +30,7 @@ const Form = (): JSX.Element => {
         <StyledForm>
             <Stack spacing={2} direction="column">
                 <TextField
-                    placeholder="Enter city name"
+                    placeholder="Введите название города"
                     apiKey={GOOGLE_MAPS_API_ID}
                     onPlaceSelected={({ formatted_address }) => {
                         const slicedCityName = SliceCityName(formatted_address || '');
@@ -44,7 +44,7 @@ const Form = (): JSX.Element => {
                     variant="contained"
                     disabled={formValid}
                     onClick={fetchCityWeather(cityName)}>
-                    Send
+                    Добавить город
                 </Button>
             </Stack>
             {cityNameDirty && cityNameError && <ErrorMessage>{cityNameError}</ErrorMessage>}
